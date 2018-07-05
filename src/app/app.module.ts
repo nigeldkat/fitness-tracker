@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -17,6 +18,8 @@ import { PastTrainingComponent } from './training/past-training/past-training.co
 import { WelcomeComponent } from './welcome/welcome.component';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +32,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
     WelcomeComponent
   ],
   imports: [
-    BrowserModule, BrowserAnimationsModule, MaterialModule, AppRoutingModule
+    BrowserModule, BrowserAnimationsModule, MaterialModule, AppRoutingModule, FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
