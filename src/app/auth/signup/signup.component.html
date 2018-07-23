@@ -1,11 +1,30 @@
 <section class="signup-form">
-  <form fxLayout="column" fxLayoutAlign="center center">
+  <form fxLayout="column" fxLayoutAlign="center center" #f="ngForm" (ngSubmit)="onSubmit(f)">
     <mat-form-field>
-      <input matInput type="email" placeholder="Your Email">
+      <input matInput 
+        type="email" 
+        placeholder="Your Email" 
+        ngModel 
+        name="email"
+        email
+        required 
+        #emailInput="ngModel">
+        <mat-error *ngIf="emailInput.hasError('required')">E-Mail is Required</mat-error>
+        <mat-error *ngIf="!emailInput.hasError('required')"> E-Mail Invalid</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="password" placeholder="Your Password">
+      <input matInput 
+        type="password" 
+        placeholder="Your Password" 
+        ngModel 
+        name="password"
+        minlength="6"
+        required
+        #password="ngModel">
+        <mat-hint>Should be at least 6 characters long</mat-hint>
+        <mat-error *ngIf="password.hasError('required')">Password Required</mat-error>
+        <mat-error *ngIf="!password.hasError('required')">Password Too Short</mat-error>
     </mat-form-field>
-
+    <button type="submit" mat-raised-button color="primary" >Submit</button>
   </form>
 </section>

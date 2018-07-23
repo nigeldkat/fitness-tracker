@@ -1,6 +1,7 @@
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule} from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -32,7 +33,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
     WelcomeComponent
   ],
   imports: [
-    BrowserModule, BrowserAnimationsModule, MaterialModule, AppRoutingModule, FlexLayoutModule
+    BrowserModule, BrowserAnimationsModule, MaterialModule, AppRoutingModule, FlexLayoutModule, FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
