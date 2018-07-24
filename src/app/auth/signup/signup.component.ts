@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm} from '@angular/forms';
+import { NgForm} from '@angular/forms';  //for two way binding or template form
 
 @Component({
   selector: 'app-signup',
@@ -8,9 +8,12 @@ import { NgForm} from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
 
+  maxDate = new Date();
   constructor() { }
 
   ngOnInit() {
+    let tempDate = new Date();
+    this.maxDate.setFullYear(tempDate.getFullYear() - 18);
   }
 
   onSubmit(form: NgForm){
