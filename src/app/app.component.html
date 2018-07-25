@@ -1,1 +1,11 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav>
+        <p>I'm the side nave</p>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar>My Toolaba</mat-toolbar>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>
