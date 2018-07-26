@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewTrainingComponent implements OnInit {
 
+  training = [
+    {name: 'sit ups'},
+    {name: 'pull ups'},
+    {name: 'puking'},
+    {name: 'drinking shots'}
+  ];
   constructor() { }
 
   ngOnInit() {
