@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
+import { AuthService } from './auth/auth.service';
 import { TrainingComponent } from './training/training.component';
 import { CurrentTrainingComponent } from './training/current-training/current-training.component';
 import { StopTrainingComponent } from './training/current-training/stop-training.component';
@@ -39,7 +40,7 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
   imports: [
     BrowserModule, BrowserAnimationsModule, MaterialModule, AppRoutingModule, FlexLayoutModule, FormsModule, ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
   entryComponents: [StopTrainingComponent]
 })

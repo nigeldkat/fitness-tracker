@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm} from '@angular/forms';  //for two way binding or template form
 
+import { AuthService } from '../auth.service'; 
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -9,7 +11,7 @@ import { NgForm} from '@angular/forms';  //for two way binding or template form
 export class SignupComponent implements OnInit {
 
   maxDate = new Date();
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
     let tempDate = new Date();
@@ -17,7 +19,10 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
-    console.log(form);
+    this.authService.regusterUser({
+      email: form.value.password,
+      password: form.value.password
+    });
   }
 
 }
