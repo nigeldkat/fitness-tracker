@@ -11,8 +11,8 @@
     <mat-icon>timeline</mat-icon>
     <span class="nav-caption">Training</span>
   </a>
-  <mat-list-item  (click)="onClose()">
-    <button *ngIf='isAuth'  mat-icon-button>
+  <mat-list-item >
+    <button *ngIf='isAuth'  mat-icon-button  (click)="onLogout()">
       <mat-icon>eject</mat-icon>
       <span class="nav-caption">Logout</span>
     </button>
