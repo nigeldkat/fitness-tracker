@@ -14,6 +14,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthService } from './auth/auth.service';
 import { TrainingComponent } from './training/training.component';
+import { TrainingService} from './training/training.service';
 import { CurrentTrainingComponent } from './training/current-training/current-training.component';
 import { StopTrainingComponent } from './training/current-training/stop-training.component';
 import { NewTrainingComponent } from './training/new-training/new-training.component';
@@ -40,7 +41,7 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
   imports: [
     BrowserModule, BrowserAnimationsModule, MaterialModule, AppRoutingModule, FlexLayoutModule, FormsModule, ReactiveFormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, TrainingService ],
   bootstrap: [AppComponent],
   entryComponents: [StopTrainingComponent]
 })
