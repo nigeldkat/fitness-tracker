@@ -20,7 +20,7 @@ export class TrainingComponent implements OnInit {
         if(exercise){
           this.ongoingTraining = true;
         } else {
-          this.ongoingTraining = true;
+          this.ongoingTraining = false;
         }        
       }
     );
