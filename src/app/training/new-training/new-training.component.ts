@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';  //for two way binding or template form
 
-import { AngularFirestore } from 'angularfire2/firestore';
-
-
+//import { AngularFirestore } from 'angularfire2/firestore';
 
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -16,32 +14,44 @@ import { Exercise } from '../exercise.model';
   templateUrl: './new-training.component.html',
   styleUrls: ['./new-training.component.css']
 })
-export class NewTrainingComponent implements OnInit {
+export class NewTrainingComponent implements OnInit, OnDestroy {
   //for initial
   //exercises: Exercise[] = [];
   //exercises: Observable<any>; -- for valuechanges
-  exercises: Observable<Exercise[]>;
+  //exercises: Observable<Exercise[]>;  //for snapshot
+  //for subscription
+  exercises: Exercise[] ;
+  exerciseSubscription: Subscription;
 
-  constructor(private trainingService: TrainingService, private db: AngularFirestore) { }
+  //, private db: AngularFirestore
+  constructor(private trainingService: TrainingService) { }
 
   ngOnInit() {
+
+    this.exerciseSubscription = this.trainingService.exercisesChanged.subscribe(
+      exercises => (this.exercises = exercises)
+    );
+    this.trainingService.fetchAvailableExercises();
+
 
     //without subscription using valuechanges
     //this.exercises = this.db.collection('availableExercises').valueChanges();
 
-    this.exercises =
-      this.db.collection('availableExercises')
-        .snapshotChanges()
-        .map(docArray => {
-          return docArray.map(doc => {
-            return {
-              id: doc.payload.doc.id,
-              name: doc.payload.doc.data().name,
-              duration: doc.payload.doc.data().duration,
-              calories: doc.payload.doc.data().calories
-            };
-          });
-        });
+
+    //with mappig
+    // this.exercises =
+    //   this.db.collection('availableExercises')
+    //     .snapshotChanges()
+    //     .map(docArray => {
+    //       return docArray.map(doc => {
+    //         return {
+    //           id: doc.payload.doc.id,
+    //           name: doc.payload.doc.data().name,
+    //           duration: doc.payload.doc.data().duration,
+    //           calories: doc.payload.doc.data().calories
+    //         };
+    //       });
+    //     });
 
 
     //valueChanges strips off meta data
@@ -82,6 +92,10 @@ export class NewTrainingComponent implements OnInit {
 
     //old
     //this.exercises = this.trainingService.getAvailableExercises();
+  }
+
+  ngOnDestroy(){
+    this.exerciseSubscription.unsubscribe();
   }
 
   onStartTraining(form: NgForm) {
