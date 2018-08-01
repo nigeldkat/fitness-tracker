@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';  //same as event emitter
+import { AngularFireAuth } from 'angularfire2/auth';
 
 import { User } from './user.model';
 import { AuthData } from './auth-data.model';
+import { TrainingService } from '../training/training.service';
 
 @Injectable()
 export class AuthService{
-
     authChange = new Subject<boolean>();
     private user: User;
+    private isAuthenticated = false;
 
-    constructor(private router: Router){}
+    constructor(private router: Router, private afAuth: AngularFireAuth){}
 
     regusterUser(authData: AuthData){
         this.user = {
