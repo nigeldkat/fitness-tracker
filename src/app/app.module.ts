@@ -25,7 +25,7 @@ import { PastTrainingComponent } from './training/past-training/past-training.co
 import { WelcomeComponent } from './welcome/welcome.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
-
+import { UIService } from './shared/ui.service';
 import{ environment } from '../environments/environment';
 
 @NgModule({
@@ -54,7 +54,7 @@ import{ environment } from '../environments/environment';
     AngularFirestoreModule,
     AngularFireAuthModule
   ],
-  providers: [AuthService, TrainingService ],
+  providers: [AuthService, TrainingService, UIService ],
   bootstrap: [AppComponent],
   entryComponents: [StopTrainingComponent]
 })

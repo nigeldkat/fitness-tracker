@@ -6,7 +6,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from './user.model';
 import { AuthData } from './auth-data.model';
 import { TrainingService } from '../training/training.service';
-//import { auth } from '../../../node_modules/firebase/app';
+import { UIService } from '../shared/ui.service';
+
+//import { MatSnackBar } from '@angular/material';
 
 @Injectable()
 export class AuthService {
@@ -14,7 +16,10 @@ export class AuthService {
     private isAuthenticated = false;
 
     constructor(private router: Router,
-        private afAuth: AngularFireAuth, private trainingService: TrainingService) { }
+        private afAuth: AngularFireAuth,
+        private trainingService: TrainingService,
+        //private snackBar: MatSnackBar,
+        private uiService: UIService) { }
 
     initAuthListener() {
         this.afAuth.authState.subscribe(user => {
@@ -32,27 +37,41 @@ export class AuthService {
     }
 
     regusterUser(authData: AuthData) {
+        this.uiService.loadingStateChanged.next(true);
         this.afAuth.auth
             .createUserWithEmailAndPassword(authData.email, authData.password)
             .then(result => {
+                this.uiService.loadingStateChanged.next(false);
                 //replaced with auth listiner
                 //this.authSuccessfully();
             })
             .catch(error => {
-                console.log('error message -', error);
+                this.uiService.loadingStateChanged.next(false);
+                // this.snackBar.open(error.message, null, {
+                //     duration: 3000
+                // });
+                this.uiService.showSnackbar(error.message, null, 3000);
+                //console.log('error message -', error);
             });
     }
 
     login(authData: AuthData) {
+        this.uiService.loadingStateChanged.next(true);
         this.afAuth.auth
             .signInWithEmailAndPassword(authData.email, authData.password)
             .then(result => {
+                this.uiService.loadingStateChanged.next(false);
                 //replaced with auth listiner
                 //console.log(result);
                 //this.authSuccessfully();
             })
             .catch(error => {
-                console.log(error);
+                this.uiService.loadingStateChanged.next(false);
+                // this.snackBar.open(error.message, null, {
+                //     duration: 3000
+                // });
+                this.uiService.showSnackbar(error.message, null, 3000);
+                //console.log(error);
             })
 
 
