@@ -22,17 +22,19 @@ export class SidenavListComponent implements OnInit, OnDestroy {
     })
   }
 
-  ngOnDestroy(){
-    this.authSubscription.unsubscribe();
+  ngOnDestroy() {
+    if (this.authService) {
+      this.authSubscription.unsubscribe();
+    }
   }
 
-  onClose(){
+  onClose() {
     this.sidenavClose.emit();
   }
-  
-  onLogout(){
+
+  onLogout() {
     this.onClose();
-    this.authService.logout();    
+    this.authService.logout();
   }
 
 }

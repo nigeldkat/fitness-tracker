@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularFireModule } from 'angularfire2';
 //import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+//import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -39,7 +39,7 @@ import { TrainingModule } from './training/training.module'
     FlexLayoutModule, 
     AngularFireModule.initializeApp(environment.firebase),
     //AngularFirestoreModule,
-    AngularFireAuthModule,
+    //AngularFireAuthModule,
     AuthModule,
     TrainingModule
   ],
