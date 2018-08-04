@@ -44,7 +44,7 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
       exercises => (this.exercises = exercises)
     );
     this.trainingService.fetchAvailableExercises();
-
+    this.fetchExercises();
 
     //without subscription using valuechanges
     //this.exercises = this.db.collection('availableExercises').valueChanges();
@@ -106,9 +106,17 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
     //this.exercises = this.trainingService.getAvailableExercises();
   }
 
+  private fetchExercises(){
+    this.trainingService.fetchAvailableExercises();
+  }
+
   ngOnDestroy(){
     this.exerciseSubscription.unsubscribe();
     this.loadingSubs.unsubscribe();
+  }
+
+  fetchAgain(){
+    this.fetchExercises();
   }
 
   onStartTraining(form: NgForm) {
